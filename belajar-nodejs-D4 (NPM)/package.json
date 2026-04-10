@@ -1,0 +1,16 @@
+{
+  "name": "belajar-nodejs-d4",
+  "version": "1.0.0",
+  "description": "Belajar NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "ls",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Agun",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.15.35"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "d5-npm",
+  "version": "1.0.0",
+  "description": "Belajar NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Agunnn",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.15.35"
+  }
+}

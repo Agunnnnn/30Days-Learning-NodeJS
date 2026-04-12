@@ -1,11 +1,32 @@
-const contacts = require('./contacts.js')
+const { type } = require('node:os');
+const yargs= require('yargs')//YARGS @16.2.0
+const contacts = require ('./contacts.js')
 
 
-const fungsiUtama = async () => {
-    const Nama = await contacts.Npertanyaan('Masukan Nama Anda : ');
-    const NoTLP = await contacts.Npertanyaan('Masukan Nomor Telepon Anda : ');
-    const Email = await contacts.Npertanyaan('Masukan Email Anda : ');
+yargs.command({
+    command : 'add',
+    describe : 'Menambahkan Data Baru',
+    builder : {
+        Nama : {
+            d1escribe : "Nama Lengkap",
+            demandOption : true,
+            type : 'string',
+        },
+        NoTLP : {
+            describe : "Nomor Telepon",
+            demandOption : true,
+            type : 'string',
+        },
+        Email : {
+            describe : "Email Pengguna",
+            demandOption : true,
+            type : 'string',
+        },
+    },
+    handler (argv) {
+        contacts.simpan_contacts(argv.Nama, argv.NoTLP, argv.Email);
+    }
+});
 
-    contacts.simpan_contacts(Nama, NoTLP, Email);
-}
-fungsiUtama();
+
+yargs.parse();

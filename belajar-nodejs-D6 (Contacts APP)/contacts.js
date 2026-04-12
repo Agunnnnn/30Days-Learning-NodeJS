@@ -1,11 +1,6 @@
 const { rejects } = require('assert');
 const fs = require('fs');
-const readline = require('readline');
-
-const rl = readline.createInterface({
-    input : process.stdin,
-    output : process.stdout,
-});
+const validator = require('validator')
 
 
 //membuat folder data jika blom ada
@@ -22,15 +17,6 @@ if(!fs.existsSync(tempatFile)){
 
 
 
-//input
-const Npertanyaan= (pertanyaan) => {
-    return new Promise((resolve, rejects) => {
-        rl.question(pertanyaan, (Nama) => {
-            resolve(Nama);
-        })
-    })
-}
-
 
 const simpan_contacts = (Nama, NoTLP, Email) =>{
         const isi = {
@@ -41,14 +27,33 @@ const simpan_contacts = (Nama, NoTLP, Email) =>{
 
     const lihat_file = fs.readFileSync('data/contacts.json');//baca data json simpan di variable lihat-Data
     const file = JSON.parse(lihat_file)//awal data json itu berbentuk teks, kita ubah menjadi object
+    //cek data duplikat
+    const duplikat= file.find((isi) => isi.Nama === Nama)
+    if(duplikat){
+        console.log("Contacts Sudah Terdaftar");
+        return false;
+    }
+
+    //cek email
+    if(Email) {
+        if(!validator.isEmail(Email)){
+            console.log("Email tidak valid")
+            return false;
+        }
+    }
+
+    //cek no tlp
+    if(!validator.isMobilePhone(NoTLP, 'id-ID')){
+        console.log("Nomor HP Tidak Valid!");
+        return false;
+    }
+
+
     file.push(isi)//menambahkan data (isi dari variable "isi") ke dalam varibel file (yang di dalam nya sudah ada json yang berbentuk objek)
-
-
     fs.writeFileSync('data/contacts.json', JSON.stringify(file))//menulis data dari inputan
-    rl.close()
 
     console.log('data berhasil di simpan')
 
 }
 
-module.exports = {Npertanyaan, simpan_contacts};
+module.exports = { simpan_contacts};

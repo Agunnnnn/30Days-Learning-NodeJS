@@ -1,0 +1,15 @@
+{
+  "name": "d6-contatcs-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "agun",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "validator": "^13.15.35",
+    "yargs": "^16.2.0"
+  }
+}

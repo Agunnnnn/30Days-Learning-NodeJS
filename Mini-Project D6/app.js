@@ -1,6 +1,8 @@
 const yargs = require('yargs');
-const Pesan = require('./pesanan.js')
+const fungsi = require('./pesanan.js')
 
+
+//Tambah Data
 yargs.command ({
     command : 'Tambah',
     describe : 'Menambahkan Data Baru',
@@ -27,7 +29,24 @@ yargs.command ({
         },
     },
     handler (argv){
-        Pesan.buatPesanan(argv.Nama, argv.Pesanan, argv.Qty, argv.Email)
+        fungsi.buatPesanan(argv.Nama, argv.Pesanan, argv.Qty, argv.Email)
+    }
+}).demandCommand();
+
+
+//Delete Data
+yargs.command({
+    command:"Cancel",
+    describe : "Menghapus Data Yang Sudah Ada",
+    builder :{
+        Nama : {
+            describe : "Nama Yang Akan Di Hapus",
+            demandOption : true,
+            type : 'string',
+        },
+    },
+    handler(argv){
+        fungsi.DeleteData(argv.Nama);
     }
 })
 

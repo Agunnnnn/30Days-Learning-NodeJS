@@ -37,7 +37,7 @@ yargs.command ({
 //Delete Data
 yargs.command({
     command:"Cancel",
-    describe : "Menghapus Data Yang Sudah Ada",
+    describe : "Mengcancel Pesanan",
     builder :{
         Nama : {
             describe : "Nama Yang Akan Di Hapus",
@@ -49,5 +49,21 @@ yargs.command({
         fungsi.DeleteData(argv.Nama);
     }
 })
+
+//Detail Pesanan
+    yargs.command({
+        command : "Detail",
+        describe : "Melihat Data Pesanan",
+        builder : {
+            Nama : {
+                describe : "Nama Customer",
+                demandOption : true,
+                type : "string",
+            },
+        },
+        handler(argv){
+            fungsi.detailPesanan(argv.Nama);
+        }
+    })
 
 yargs.parse()

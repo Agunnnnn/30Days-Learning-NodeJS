@@ -47,6 +47,22 @@ const DeleteData = (Nama) => {
     fs.writeFileSync('./data/Pesanan.json', JSON.stringify(NewData));
     console.log(`${Nama} Berhasil Di Hapus`);
 }
-module.exports = {buatPesanan, DeleteData}
+
+//Detail Pesanan
+const detailPesanan = (Nama) => {
+    const save = Baca_Data();
+    const Cari = save.find((Cari) => Cari.NamaCust.toLowerCase() === Nama.toLowerCase());
+    if(!Cari){
+        console.log(`${Nama} Tidak Di Temukan / Belum Memesan Apapun!`);
+        return false;
+    }
+    console.log(`Detail Pesanan`)
+    console.log(`Customer : ${Cari.NamaCust}`)
+    console.log(`Pesanan : ${Cari.PesananCust}`)
+    console.log(`Qty : ${Cari.QtyPesanan}`)
+    
+
+}
+module.exports = {buatPesanan, DeleteData, detailPesanan}
 
 

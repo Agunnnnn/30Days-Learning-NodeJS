@@ -66,9 +66,12 @@ app.get("/product/:id", (req, res) => {
 });
 
 app.use("/", (req, res) => {
-    //use akan di jalankan untuk request apapun
+    //401 -> Unauthorized (belum login / belum autentikasi)
+    //403 -> Forbidden (sudah login tapi tidak punya izin)
+    //404 -> Not Found (halaman / route tidak ditemukan)
+    //500 -> Internal Server Error (error dari server / bug)
     res.status(404);
-    res.send("<h1>404 Not Found</h1>"); //bisa di jadikan tempat untuk menangani halaman yang tidak ada
+    res.send("<h1>404-Not Found</h1>"); //bisa di jadikan tempat untuk menangani halaman yang tidak ada
 });
 
 app.listen(port, () => {

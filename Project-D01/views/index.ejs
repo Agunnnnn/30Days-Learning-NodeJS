@@ -1,0 +1,27 @@
+<h1>HELLO WORLD INI NODE HALAMAN INDEX</h1>
+<h3>Daftar Nama Mahasiswa</h3>
+<!-- DATA MAHASISWA -->
+<% if (Mahasiswa.length < 1) { %>
+    <p>DATA Mahasiswa Masi Kosong</p>
+<% }else{ %>
+    <% Mahasiswa.forEach(DMhs => { %>
+    <ul>
+        <li>nama Mahasiswa = <%= DMhs.nama %></li>
+        <li>email Mahasiswa = <%= DMhs.Email %></li>
+        
+    </ul>
+    <% }) %>
+<% }%>
+
+<!-- DATA SISWA -->
+<h3>Daftar Nama Siswa</h3>
+<% if (Siswa.length < 1) { %>
+    <p>Data Siswa Masi Kosong</p>
+<% }else { %>
+    <% Siswa.forEach(Dswa => { %>
+    <ul>
+        <li>Nama Siswa = <%= Dswa.nama %></li>
+        <li>email Siswa = <%= Dswa.Email %></li>
+    </ul>
+    <% }) %>
+    <%} %>

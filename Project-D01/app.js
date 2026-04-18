@@ -1,17 +1,46 @@
+// export lib
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const { BacaData, detail } = require("./utils/Contatcs");
+const {
+    BacaData,
+    detail,
+    TambahKontak,
+    cekDuplikat,
+} = require("./utils/Contatcs");
+const { body, validationResult, check } = require("express-validator");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+
+// app initialization
 const app = express();
 const port = 3000;
 
+// template engine
 app.set("view engine", "ejs"); // <- pake ejs
 
 //third-party middleware
 app.use(expressLayouts); // <- Pake Express-ejs-layouts
+app.use(express.urlencoded());
 
-//buildin middleware
+//builtin middleware
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
+// config flash
+app.use(cookieParser("secret"));
+app.use(
+    session({
+        cookie: { maxAge: 6000 },
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+    }),
+);
+
+app.use(flash());
+
+//route ke root (home)
 app.get("/", (req, res) => {
     const Mahasiswa = [
         {
@@ -51,6 +80,7 @@ app.get("/", (req, res) => {
     });
 });
 
+// route ke about
 app.get("/about", (req, res) => {
     res.render("about", {
         title: "Halaman About",
@@ -58,21 +88,68 @@ app.get("/about", (req, res) => {
     });
 });
 
+//route contact (tabel)
 app.get("/contact", (req, res) => {
     const data = BacaData();
     res.render("contact", {
         title: "Halaman Contact",
         layout: "layouts/main-layouts",
         data: data,
+        msg: req.flash("msg"),
     });
 });
 
+//route ke add contact
+app.get("/contact/add", (req, res) => {
+    res.render("add-contact", {
+        title: "Halaman Tambah Kontak",
+        layout: "layouts/main-layouts",
+    });
+});
+
+//proses menerima data dari add contact
+app.post(
+    "/contact",
+    [
+        check("email", "Alamat Email Tidak Valid").isEmail(), //buat cek email
+        check("nohp", "Nomor Telepon Tidak Valid").isMobilePhone("id-ID"), //buat cek nomor email
+        //custom validator cek duplikat nama
+        body("email").custom((value) => {
+            const duplikat = cekDuplikat(value);
+            if (duplikat) {
+                throw new Error("Email Sudah Terdaftar");
+            }
+            return true;
+        }),
+    ],
+    (req, res) => {
+        // Jika validator merasa ada yang salah
+        const error = validationResult(req);
+        if (!error.isEmpty()) {
+            // return res.status(404).json({ error: error.array() });
+            res.render("add-contact", {
+                title: "Halaman Tambah Kontak",
+                layout: "layouts/main-layouts",
+                error: error.array(),
+            });
+        } else {
+            TambahKontak(req.body);
+            // kirim flash msg
+            req.flash("msg", "Data Kontak Berhasil Di Tambahkan");
+            res.redirect("/contact");
+        }
+    },
+);
+
+//route contact dan paramater (detail)
 app.get("/contact/:nama", (req, res) => {
     const detailPerson = detail(req.params.nama);
+    const nama = req.params.nama;
     res.render("detail", {
         title: "Halaman Detail Contact",
         layout: "layouts/main-layouts",
         detailPerson: detailPerson,
+        nama: nama,
     });
 });
 

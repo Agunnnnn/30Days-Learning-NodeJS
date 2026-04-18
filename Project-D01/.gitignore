@@ -32,3 +32,5 @@ build/
 #tambahan
 public/img
 .prettierignore
+
+data/

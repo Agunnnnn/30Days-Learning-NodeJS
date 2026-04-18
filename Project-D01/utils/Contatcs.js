@@ -27,4 +27,23 @@ const detail = (nama) => {
     );
     return data;
 };
-module.exports = { BacaData, detail };
+
+// fungsi menulis / menimpa file contat.json dengan data yang baru
+const saveData = (DataBaru) => {
+    fs.writeFileSync("data/Contatcs.json", JSON.stringify(DataBaru));
+};
+
+//fungsi menambahkan data contact baru
+const TambahKontak = (Data) => {
+    const lihatData = BacaData();
+    lihatData.push(Data);
+    saveData(lihatData);
+};
+
+// cek email duplikat
+const cekDuplikat = (email) => {
+    const lihatData = BacaData();
+    return lihatData.find((data) => data.email === email);
+};
+
+module.exports = { BacaData, detail, TambahKontak, cekDuplikat };

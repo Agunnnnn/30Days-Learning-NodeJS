@@ -1,0 +1,84 @@
+<!-- outer wrapper -->
+<div class="flex items-start justify-center pt-10 pb-10">
+    <!-- inner wrappter -->
+    <div class="w-full max-w-md p-2 rounded-xl shadow bg-[#0f0e32] text-white">
+        <!-- HEADER  -->
+        <h2 class="text-xl font-bold mb-5 text-center">Tambah Data</h2>
+
+        <!-- main content -->
+        <% if (typeof error != 'undefined') { %>
+        <div
+            class="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-xl"
+            role="alert"
+        >
+            <span class="font-medium">error!</span>
+            <ul class="list-disc pl-5">
+                <% error.forEach(errors => { %>
+                <li>
+                    <%= errors.msg %>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+        <% } %>
+        <form class="max-w-sm mx-auto" method="post" action="/contact">
+            <!-- NAMA START -->
+            <div class="mb-5">
+                <label
+                    for="nama"
+                    class="block mb-2.5 text-sm font-medium text-heading"
+                    >Nama</label
+                >
+                <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    class="text-black bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="Masukan Namamu "
+                    required
+                />
+            </div>
+            <!-- NAMA END -->
+            <!-- NO HP START -->
+            <div class="mb-5">
+                <label
+                    for="nohp"
+                    class="block mb-2.5 text-sm font-medium text-heading"
+                    >No HP</label
+                >
+                <input
+                    type="text"
+                    id="nohp"
+                    name="nohp"
+                    class="text-black bg-neutral-secondary-medium border rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="08xxxxxxx"
+                    required
+                />
+            </div>
+            <!-- NO HP END -->
+            <!-- EMAIL START -->
+            <div class="mb-5">
+                <label
+                    for="email"
+                    class="block mb-2.5 text-sm font-medium text-heading"
+                    >Email</label
+                >
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="text-black bg-neutral-secondary-medium border rounded-xl border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="xxx@gmail.com"
+                    required
+                />
+            </div>
+            <!-- EMAIL END -->
+            <button
+                type="submit"
+                class="text-black bg-white box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-xl text-sm px-4 py-2.5 focus:outline-none"
+            >
+                Tambah Data
+            </button>
+        </form>
+    </div>
+</div>

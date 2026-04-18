@@ -1,27 +1,14 @@
-<h1>HELLO WORLD INI NODE HALAMAN INDEX</h1>
-<h3>Daftar Nama Mahasiswa</h3>
-<!-- DATA MAHASISWA -->
-<% if (Mahasiswa.length < 1) { %>
-    <p>DATA Mahasiswa Masi Kosong</p>
-<% }else{ %>
-    <% Mahasiswa.forEach(DMhs => { %>
-    <ul>
-        <li>nama Mahasiswa = <%= DMhs.nama %></li>
-        <li>email Mahasiswa = <%= DMhs.Email %></li>
-        
-    </ul>
-    <% }) %>
-<% }%>
-
-<!-- DATA SISWA -->
-<h3>Daftar Nama Siswa</h3>
-<% if (Siswa.length < 1) { %>
-    <p>Data Siswa Masi Kosong</p>
-<% }else { %>
-    <% Siswa.forEach(Dswa => { %>
-    <ul>
-        <li>Nama Siswa = <%= Dswa.nama %></li>
-        <li>email Siswa = <%= Dswa.Email %></li>
-    </ul>
-    <% }) %>
-    <%} %>
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="cotainer">
+    <div class="row">
+        <div class="col text-center">
+            <img
+                src="/img/foto1.png"
+                alt="unpam"
+                class="h-auto max-w-lg transition-all duration-300 rounded-base cursor-pointer filter grayscale hover:grayscale-0 mx-auto"
+            />
+            <h1 class="display4 font-bold text-5xl py-3">Agunnnnn</h1>
+            <p class="lead">Informatic Engg | Students | At</p>
+        </div>
+    </div>
+</div>

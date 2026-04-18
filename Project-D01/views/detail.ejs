@@ -1,29 +1,67 @@
 <script src="https://cdn.tailwindcss.com"></script>
 
 <% if (!detailPerson) { %>
-    <div class="flex items-start p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg" role="alert">
-    <svg class="w-4 h-4 me-2 shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-    <p><span class="font-medium me-1">Danger alert!</span> Change a few things up and try submitting again.</p>
-    </div>
+<div
+    class="flex items-start p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg"
+    role="alert"
+>
+    <svg
+        class="w-4 h-4 me-2 shrink-0 mt-0.5 sm:mt-0"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+    </svg>
+    <p>
+        <span class="font-medium me-1">Danger alert!</span>data
+        <%= nama %>
+        tidak di temukan
+    </p>
+</div>
 <% }else { %>
-        <div class="flex flex justify-center mt-10 mb-10">
-            <div class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs">
-                <div class="flex flex-col items-center">
-                    <img class="w-24 h-24 mb-6 rounded-full transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" src="/img/foto1.png" alt="foto detail"/>
+<div class="flex flex justify-center mt-10 mb-10">
+    <div
+        class="relative bg-neutral-primary-soft max-w-xs w-full p-6 border border-default rounded-base shadow-xs"
+    >
+        <div class="flex flex-col items-center">
+            <img
+                class="w-24 h-24 mb-6 rounded-full transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                src="/img/foto1.png"
+                alt="foto detail"
+            />
 
-                    <h5 class="mb-0.5 text-xl font-semibold tracking-tight text-heading"><%= detailPerson.nama%></h5>
-                    <span class="text-sm text-body">Teknik Informatika</span>
+            <h5
+                class="mb-0.5 text-xl font-semibold tracking-tight text-heading"
+            >
+                <%= detailPerson.nama%>
+            </h5>
+            <span class="text-sm text-body">Teknik Informatika</span>
 
-                    <div class="flex flex-col items-center mt-4 md:mt-6 gap-4">
-                        <button class="text-body bg-neutral-secondary-medium border border-default-medium rounded-base text-sm px-4 py-2.5">
-                            <%= detailPerson.email %>
-                        </button>
-
-                        <button class="text-body bg-neutral-secondary-medium border border-default-medium rounded-base text-sm px-4 py-2.5">
-                            <%= detailPerson.nohp %>
-                        </button>
-                    </div>
-                </div>
+            <div class="flex flex-col items-center mt-4 md:mt-6 gap-4">
+                <h2 class="font-bold">EMAIL</h2>
+                <button
+                    class="text-body bg-[#0f0e32] text-white border border-default-medium rounded-base text-sm px-4 py-2.5"
+                >
+                    <%= detailPerson.email %>
+                </button>
+                <h2 class="font-bold">NO TELEPON</h2>
+                <button
+                    class="text-body bg-[#0f0e32] text-white border border-default-medium rounded-base text-sm px-4 py-2.5"
+                >
+                    <%= detailPerson.nohp %>
+                </button>
             </div>
         </div>
-    <% } %>
+    </div>
+</div>
+<% } %>

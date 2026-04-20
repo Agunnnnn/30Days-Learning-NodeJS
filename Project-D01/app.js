@@ -6,6 +6,7 @@ const {
     detail,
     TambahKontak,
     cekDuplikat,
+    deleteData,
 } = require("./utils/Contatcs");
 const { body, validationResult, check } = require("express-validator");
 const session = require("express-session");
@@ -88,7 +89,7 @@ app.get("/about", (req, res) => {
     });
 });
 
-//route contact (tabel)
+//route contactq
 app.get("/contact", (req, res) => {
     const data = BacaData();
     res.render("contact", {
@@ -140,6 +141,34 @@ app.post(
         }
     },
 );
+// route delete
+app.get("/contact/delete/:nama", (req, res) => {
+    const detailPerson = detail(req.params.nama);
+    if (!detailPerson) {
+        res.status(404);
+        res.send("<h1>404 Not Found</h1>");
+    } else {
+        deleteData(req.params.nama);
+        // flash msg
+        req.flash("msg", "Data Kontak Berhasil Di Hapus");
+        res.redirect("/contact");
+    }
+});
+
+// route ubah data
+app.get("/contact/edit/:nama", (req, res) => {
+    const cariData = detail(req.params.nama);
+    res.render("edit-contact", {
+        title: "Halaman Ubah Kontak",
+        layout: "layouts/main-layouts",
+        data: cariData,
+    });
+});
+
+// proses ubah data
+app.post("/contact/update", (req, res) => {
+    res.send(req.body);
+});
 
 //route contact dan paramater (detail)
 app.get("/contact/:nama", (req, res) => {
@@ -149,7 +178,6 @@ app.get("/contact/:nama", (req, res) => {
         title: "Halaman Detail Contact",
         layout: "layouts/main-layouts",
         detailPerson: detailPerson,
-        nama: nama,
     });
 });
 

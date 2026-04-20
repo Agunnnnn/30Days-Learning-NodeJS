@@ -1,1 +1,21 @@
-[{"nama":"Palaguna","nohp":"123456789","email":"Palaguna@gmail.com"},{"nama":"Agunnnn","nohp":"321321321","email":"agunnnn@gmail.com"},{"nama":"Nugassss","nohp":"4564546","email":"NUgas@gmail.com"},{"nama":"meja","nohp":"0811","email":"Mejamakan@gmail.com"},{"nama":"meja","nohp":"0812345671123","email":"MakanMeja@gmail.com"},{"nama":"Kursi","nohp":"0812345671123","email":"kursimakan@gmail.com"}]
+[
+    {
+        "nama": "Agunnnn",
+        "nohp": "321321321",
+        "email": "agunnnn@gmail.com",
+        "jurusan": "Sismtem Informasi"
+    },
+    {
+        "nama": "Nugassss",
+        "nohp": "4564546",
+        "email": "NUgas@gmail.com",
+        "jurusan": "Teknik Elektro"
+    },
+    {
+        "nama": "Kursi",
+        "nohp": "0812345671123",
+        "email": "kursimakan@gmail.com",
+        "jurusan": "Teknik Informatika"
+    },
+    { "nama": "Lemari", "nohp": "08123456711332", "email": "lemari@gmail.con" }
+]

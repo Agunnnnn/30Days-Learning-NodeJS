@@ -46,4 +46,11 @@ const cekDuplikat = (email) => {
     return lihatData.find((data) => data.email === email);
 };
 
-module.exports = { BacaData, detail, TambahKontak, cekDuplikat };
+// fungsi hapus
+const deleteData = (nama) => {
+    const data = BacaData();
+    const pilihData = data.filter((data) => data.nama !== nama);
+    saveData(pilihData);
+};
+
+module.exports = { BacaData, detail, TambahKontak, cekDuplikat, deleteData };

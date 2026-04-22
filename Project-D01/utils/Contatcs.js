@@ -53,4 +53,23 @@ const deleteData = (nama) => {
     saveData(pilihData);
 };
 
-module.exports = { BacaData, detail, TambahKontak, cekDuplikat, deleteData };
+// fungsi ubah data
+const updateData = (kontakBaru) => {
+    const daftarKontak = BacaData();
+    // hilangkan kontak lama yang namanya sama dengan oldnama
+    const filterKontak = daftarKontak.filter(
+        (data) => data.nama !== kontakBaru.oldnama,
+    );
+    delete kontakBaru.oldnama;
+    filterKontak.push(kontakBaru);
+    saveData(filterKontak);
+};
+
+module.exports = {
+    BacaData,
+    detail,
+    TambahKontak,
+    cekDuplikat,
+    deleteData,
+    updateData,
+};

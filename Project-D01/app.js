@@ -7,6 +7,7 @@ const {
     TambahKontak,
     cekDuplikat,
     deleteData,
+    updateData,
 } = require("./utils/Contatcs");
 const { body, validationResult, check } = require("express-validator");
 const session = require("express-session");
@@ -166,10 +167,38 @@ app.get("/contact/edit/:nama", (req, res) => {
 });
 
 // proses ubah data
-app.post("/contact/update", (req, res) => {
-    res.send(req.body);
-});
-
+app.post(
+    "/contact/update",
+    [
+        check("email", "Alamat Email Tidak Valid").isEmail(), //buat cek email
+        check("nohp", "Nomor Telepon Tidak Valid").isMobilePhone("id-ID"), //buat cek nomor email
+        //custom validator cek duplikat email (tapi tidak termasuk email lama)
+        body("email").custom((value, { req }) => {
+            const duplikat = cekDuplikat(value);
+            if (duplikat && value !== req.body.oldemail) {
+                throw new Error("Email Sudah Terdaftar");
+            }
+            return true;
+        }),
+    ],
+    (req, res) => {
+        // Jika validator merasa ada yang salah
+        const error = validationResult(req);
+        if (!error.isEmpty()) {
+            res.render("edit-contact", {
+                title: "Halaman Ubah Data",
+                layout: "layouts/main-layouts",
+                error: error.array(),
+                data: req.body,
+            });
+        } else {
+            updateData(req.body);
+            // kirim flash msg
+            req.flash("msg", "Data Kontak Berhasil Di Ubah  ");
+            res.redirect("/contact");
+        }
+    },
+);
 //route contact dan paramater (detail)
 app.get("/contact/:nama", (req, res) => {
     const detailPerson = detail(req.params.nama);

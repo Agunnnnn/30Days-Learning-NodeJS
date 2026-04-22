@@ -23,7 +23,12 @@
         <% } %>
         <form class="max-w-sm mx-auto" method="post" action="/contact/update">
             <!-- NAMA START -->
-            <input type="hidden" name="oldnama" value="<%= data.nama %>" />
+            <input type="hidden" name="oldnama" value="<%= data.nama%>" />
+            <input
+                type="hidden"
+                name="oldemail"
+                value="<%=(data.oldemail) ? data.oldemail: data.email%>"
+            />
             <div class="mb-5">
                 <label
                     for="nama"

@@ -1,0 +1,45 @@
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users/2
+
+
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name" : "Reno",
+    "email" : "Renoooo@gmail.com",
+    "gender" : "Male"
+    
+
+}
+
+###
+PATCH  http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+    "name" : "Reno",
+    "email" : "Reno@gmail.com",
+    "gender" : "Male"
+    
+
+}
+
+###
+PATCH  http://localhost:3000/users/3
+Content-Type: application/json
+
+{
+    "name" : "Bima",
+    "email" : "Bima@gmail.com",
+    "gender" : "Male"
+    
+
+}
+
+###
+DELETE http://localhost:3000/users/2

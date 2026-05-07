@@ -10,8 +10,8 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "name" : "Reno",
-    "email" : "Renoooo@gmail.com",
+    "name" : "Agun",
+    "email" : "Agunnnnnn@gmail.com",
     "gender" : "Male"
     
 
@@ -30,12 +30,12 @@ Content-Type: application/json
 }
 
 ###
-PATCH  http://localhost:3000/users/3
+PATCH  http://localhost:3000/users/6
 Content-Type: application/json
 
 {
-    "name" : "Bima",
-    "email" : "Bima@gmail.com",
+    "name" : "Agun",
+    "email" : "Agun@gmail.com",
     "gender" : "Male"
     
 

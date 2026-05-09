@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const addUser = () => {
+const editUser = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [gender, setGender] = useState("Male");
+    const { id } = useParams();
 
-    const saveUser = async (e) => {
+    useEffect(() => {
+        getUserById();
+    }, []);
+
+    const updateUser = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/users", {
+            await axios.patch(`http://localhost:3000/users/${id}`, {
                 name,
                 email,
                 gender,
@@ -21,15 +26,23 @@ const addUser = () => {
             console.log(error);
         }
     };
+
+    const getUserById = async () => {
+        const response = await axios.get(`http://localhost:3000/users/${id}`);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setGender(response.data.gender);
+    };
+
     return (
         <>
             <div className='max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg'>
                 <h2 className='text-2xl font-bold mb-6 text-center uppercase '>
-                    Add User
+                    UPDATE USER
                 </h2>
                 <div className='column'>
                     <form
-                        onSubmit={saveUser}
+                        onSubmit={updateUser}
                         className='max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-l'
                         action=''
                     >
@@ -93,10 +106,10 @@ const addUser = () => {
                         </div>
                         <div
                             type='button'
-                            className='mt-5 text-center bg-red-500 text-white py-2 px-5 rounded-xl text-1xl hover:bg-red-700  '
+                            className='mt-5 text-center bg-red-500 text-white py-2 px-5 rounded-xl text-1xl hover:bg-red-700 '
                         >
-                            <button type='submit' className='button w-full'>
-                                Save
+                            <button type='submit' className='button'>
+                                Update
                             </button>
                         </div>
                         <div
@@ -118,4 +131,4 @@ const addUser = () => {
     );
 };
 
-export default addUser;
+export default editUser;

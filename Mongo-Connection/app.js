@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const url = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url);
@@ -67,5 +67,17 @@ client.connect((error, client) => {
       }),
   );
 
-  //   console.log("Koneksi DB berhasil");
+  // Mengubah Data Bedasar kan ID (Update)
+  db.collection("Belajar").updateOne(
+    {
+      _id: new ObjectId("6a007224456f9444b7c75e3e"),
+    },
+    {
+      $set: {
+        nama: "Muhammad Reza Fitrahul Akbar",
+      },
+    },
+  );
+
+  console.log("Koneksi DB berhasil");
 });
